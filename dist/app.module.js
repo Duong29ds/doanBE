@@ -22,6 +22,12 @@ const report_entity_1 = require("./reports/report.entity");
 const core_1 = require("@nestjs/core");
 const auth_module_1 = require("./auth/auth.module");
 const ability_module_1 = require("./ability/ability.module");
+const supplier_module_1 = require("./supplier/supplier.module");
+const supplier_entity_1 = require("./supplier/supplier.entity");
+const product_module_1 = require("./product/product.module");
+const product_entity_1 = require("./product/product.entity");
+const portfolio_module_1 = require("./portfolio/portfolio.module");
+const portfolio_entity_1 = require("./portfolio/portfolio.entity");
 const cookieSession = require('cookie-session');
 let AppModule = class AppModule {
     constructor(configService) {
@@ -53,7 +59,7 @@ AppModule = __decorate([
                         username: config.get('DB_USERNAME'),
                         password: config.get('DB_PASSWORD'),
                         synchronize: true,
-                        entities: [user_entity_1.User, report_entity_1.Report],
+                        entities: [user_entity_1.User, report_entity_1.Report, supplier_entity_1.Supplier, product_entity_1.Product, portfolio_entity_1.Portfolio],
                     };
                 },
             }),
@@ -61,6 +67,9 @@ AppModule = __decorate([
             reports_module_1.ReportsModule,
             auth_module_1.AuthModule,
             ability_module_1.AbilityModule,
+            supplier_module_1.SupplierModule,
+            product_module_1.ProductModule,
+            portfolio_module_1.PortfolioModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [

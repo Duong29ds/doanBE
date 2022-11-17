@@ -12,6 +12,12 @@ import { AuthModule } from './auth/auth.module';
 import { AbilitiesGuard } from './ability/ability.guard';
 import { AbilityModule } from './ability/ability.module';
 import { CurrentUserMiddleware } from './users/middlewares/current-user.middleware';
+import { SupplierModule } from './supplier/supplier.module';
+import { Supplier } from './supplier/supplier.entity';
+import { ProductModule } from './product/product.module';
+import { Product } from './product/product.entity';
+import { PortfolioModule } from './portfolio/portfolio.module';
+import { Portfolio } from './portfolio/portfolio.entity';
 const cookieSession = require('cookie-session');
 
 @Module({
@@ -32,7 +38,7 @@ const cookieSession = require('cookie-session');
           password: config.get<string>('DB_PASSWORD'),
           //synchronize tag set to true can change database when entities change, it can remove column and any data in it when column remove
           synchronize: true,
-          entities: [User, Report],
+          entities: [User, Report, Supplier,Product,Portfolio],
         };
       },
     }),
@@ -41,6 +47,9 @@ const cookieSession = require('cookie-session');
     ReportsModule,
     AuthModule,
     AbilityModule,
+    SupplierModule,
+    ProductModule,
+    PortfolioModule,
   ],
   controllers: [AppController],
   providers: [

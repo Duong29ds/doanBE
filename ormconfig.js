@@ -12,7 +12,12 @@ switch (process.env.NODE_ENV) {
     Object.assign (dbConfig, {
       type: 'postgres',
       database: {},
-      entities: ['**/*.entity.js'],
+      entities: ['dist/**/*.entity{.ts,.js}'],
+      migrations: ['src/migrations/*.ts', 'dist/migrations/*{.ts,.js}'],
+      cli: {
+        migrationsDir: 'src/migrations',
+      },
+      synchronize: true,
     });
     break;
   case 'test':
