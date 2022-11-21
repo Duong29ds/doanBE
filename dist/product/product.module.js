@@ -10,6 +10,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProductModule = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
+const cloudinary_module_1 = require("../cloudinary/cloudinary.module");
 const portfolio_entity_1 = require("../portfolio/portfolio.entity");
 const portfolio_module_1 = require("../portfolio/portfolio.module");
 const supplier_entity_1 = require("../supplier/supplier.entity");
@@ -21,7 +22,7 @@ let ProductModule = ProductModule_1 = class ProductModule {
 };
 ProductModule = ProductModule_1 = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([product_entity_1.Product, supplier_entity_1.Supplier, portfolio_entity_1.Portfolio]), supplier_module_1.SupplierModule, portfolio_module_1.PortfolioModule],
+        imports: [typeorm_1.TypeOrmModule.forFeature([product_entity_1.Product, supplier_entity_1.Supplier, portfolio_entity_1.Portfolio]), supplier_module_1.SupplierModule, portfolio_module_1.PortfolioModule, cloudinary_module_1.CloudinaryModule],
         controllers: [product_controller_1.ProductController],
         providers: [product_service_1.ProductService],
         exports: [ProductModule_1]

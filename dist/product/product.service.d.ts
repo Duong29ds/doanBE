@@ -8,6 +8,9 @@ export declare class ProductService {
     private repoSup;
     private repoPortf;
     constructor(repo: Repository<Product>, repoSup: Repository<Supplier>, repoPortf: Repository<Portfolio>);
+    getList(): Promise<Product[]>;
+    getItem(id: string): Promise<Product>;
     createProduct(productnew: CreateProductDto, idSup: number, idListPortfolio: Array<number>): Promise<Product>;
     removeProduct(id: number): Promise<Product>;
+    removeProducts(idList: Array<number>): Promise<Product[]>;
 }

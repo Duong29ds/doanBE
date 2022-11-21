@@ -14,19 +14,45 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProductController = void 0;
 const common_1 = require("@nestjs/common");
+const cloudinary_service_1 = require("../cloudinary/cloudinary.service");
+const delete_supplier_dto_1 = require("../supplier/dtos/delete-supplier.dto");
 const create_product_dto_1 = require("./dtos/create-product.dto");
 const product_service_1 = require("./product.service");
 let ProductController = class ProductController {
-    constructor(productService) {
+    constructor(productService, cloudinary) {
         this.productService = productService;
+        this.cloudinary = cloudinary;
+    }
+    async getPortfolios() {
+        return this.productService.getList();
+    }
+    async getPortfolio(id) {
+        return this.productService.getItem(id);
     }
     async createSupplier(body) {
+        console.log(body, 'body');
         return this.productService.createProduct(body, body.idSup, body.idListPortfolio);
     }
     removePortfolio(id) {
         return this.productService.removeProduct(parseInt(id));
     }
+    removeSuppliers(body) {
+        return this.productService.removeProducts(body.idlist);
+    }
 };
+__decorate([
+    (0, common_1.Get)('/list'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], ProductController.prototype, "getPortfolios", null);
+__decorate([
+    (0, common_1.Get)('/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], ProductController.prototype, "getPortfolio", null);
 __decorate([
     (0, common_1.Post)('/new'),
     __param(0, (0, common_1.Body)()),
@@ -41,9 +67,16 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], ProductController.prototype, "removePortfolio", null);
+__decorate([
+    (0, common_1.Delete)('/delete'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [delete_supplier_dto_1.DeleteListIdDto]),
+    __metadata("design:returntype", void 0)
+], ProductController.prototype, "removeSuppliers", null);
 ProductController = __decorate([
     (0, common_1.Controller)('product'),
-    __metadata("design:paramtypes", [product_service_1.ProductService])
+    __metadata("design:paramtypes", [product_service_1.ProductService, cloudinary_service_1.CloudinaryService])
 ], ProductController);
 exports.ProductController = ProductController;
 //# sourceMappingURL=product.controller.js.map

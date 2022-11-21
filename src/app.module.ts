@@ -19,6 +19,7 @@ import { Product } from './product/product.entity';
 import { PortfolioModule } from './portfolio/portfolio.module';
 import { Portfolio } from './portfolio/portfolio.entity';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
+import { Cloudinary } from './cloudinary/cloudinary.entity';
 const cookieSession = require('cookie-session');
 
 @Module({
@@ -39,7 +40,7 @@ const cookieSession = require('cookie-session');
           password: config.get<string>('DB_PASSWORD'),
           //synchronize tag set to true can change database when entities change, it can remove column and any data in it when column remove
           synchronize: true,
-          entities: [User, Report, Supplier, Product, Portfolio],
+          entities: ['dist/**/*.entity.js'],
         };
       },
     }),

@@ -1,4 +1,5 @@
 import { Optional } from '@nestjs/common';
+import { Cloudinary } from 'src/cloudinary/cloudinary.entity';
 import { Portfolio } from 'src/portfolio/portfolio.entity';
 import { Supplier } from 'src/supplier/supplier.entity';
 import {
@@ -37,8 +38,11 @@ import {
     @ManyToOne(() => Supplier, (supplier) => supplier.products,{onDelete:'SET NULL'})
     supplier: Supplier;
 
+    @OneToMany(() => Cloudinary, (cloudinary) => cloudinary.product)
+    cloudinarys: Cloudinary[];
+
     @ManyToMany(() => Portfolio, (portfolio) => portfolio.products)
     @JoinTable({name:'portfolio_product'})
     portfolios: Portfolio[]
-  }
+}
   

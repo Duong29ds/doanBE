@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { CloudinaryModule } from 'src/cloudinary/cloudinary.module';
 import { Portfolio } from 'src/portfolio/portfolio.entity';
 import { PortfolioModule } from 'src/portfolio/portfolio.module';
 import { Supplier } from 'src/supplier/supplier.entity';
@@ -9,7 +10,7 @@ import { Product } from './product.entity';
 import { ProductService } from './product.service';
 
 @Module({
-  imports:[TypeOrmModule.forFeature([Product,Supplier,Portfolio]), SupplierModule, PortfolioModule],
+  imports:[TypeOrmModule.forFeature([Product,Supplier,Portfolio]), SupplierModule, PortfolioModule,CloudinaryModule],
   controllers: [ProductController],
   providers: [ProductService],
   exports:[ProductModule]

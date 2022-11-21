@@ -31,6 +31,10 @@ __decorate([
     __metadata("design:type", Number)
 ], CreateProductDto.prototype, "price", void 0);
 __decorate([
+    (0, class_validator_1.IsArray)(),
+    __metadata("design:type", Object)
+], CreateProductDto.prototype, "images", void 0);
+__decorate([
     (0, class_transformer_1.Type)(() => Date),
     (0, class_validator_1.IsDate)(),
     __metadata("design:type", Date)

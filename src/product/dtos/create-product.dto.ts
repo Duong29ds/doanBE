@@ -18,6 +18,9 @@ import {
     @IsNumber()
     price: number;
 
+    @IsArray()
+    images: Express.Multer.File
+
     @Type(() => Date)
     @IsDate()
     import_date: Date;

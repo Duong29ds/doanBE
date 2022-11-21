@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Product = void 0;
+const cloudinary_entity_1 = require("../cloudinary/cloudinary.entity");
 const portfolio_entity_1 = require("../portfolio/portfolio.entity");
 const supplier_entity_1 = require("../supplier/supplier.entity");
 const typeorm_1 = require("typeorm");
@@ -47,6 +48,10 @@ __decorate([
     (0, typeorm_1.ManyToOne)(() => supplier_entity_1.Supplier, (supplier) => supplier.products, { onDelete: 'SET NULL' }),
     __metadata("design:type", supplier_entity_1.Supplier)
 ], Product.prototype, "supplier", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => cloudinary_entity_1.Cloudinary, (cloudinary) => cloudinary.product),
+    __metadata("design:type", Array)
+], Product.prototype, "cloudinarys", void 0);
 __decorate([
     (0, typeorm_1.ManyToMany)(() => portfolio_entity_1.Portfolio, (portfolio) => portfolio.products),
     (0, typeorm_1.JoinTable)({ name: 'portfolio_product' }),

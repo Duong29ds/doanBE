@@ -25,6 +25,12 @@ let ProductService = class ProductService {
         this.repoSup = repoSup;
         this.repoPortf = repoPortf;
     }
+    async getList() {
+        return this.repo.find();
+    }
+    async getItem(id) {
+        return this.repo.findOne(id);
+    }
     async createProduct(productnew, idSup, idListPortfolio) {
         const product = await this.repo.create(productnew);
         const supplier = await this.repoSup.findOne(idSup);
@@ -39,6 +45,13 @@ let ProductService = class ProductService {
             throw new common_1.NotFoundException('portfolio not found');
         }
         return this.repo.remove(product);
+    }
+    async removeProducts(idList) {
+        const products = await this.repo.findByIds(idList);
+        if (!products) {
+            throw new common_1.NotFoundException('products remove not found');
+        }
+        return this.repo.remove(products);
     }
 };
 ProductService = __decorate([
