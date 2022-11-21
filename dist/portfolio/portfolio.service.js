@@ -23,6 +23,16 @@ let PortfolioService = class PortfolioService {
         this.repo = repo;
         this.repoProd = repoProd;
     }
+    async getItem(id) {
+        const products = await this.repoProd
+            .createQueryBuilder('product')
+            .innerJoin('product.portfolios', 'portfolio_product').getMany();
+        const portfolioTemp = await this.repo.findOne(id);
+        return Object.assign(Object.assign({}, portfolioTemp), { products });
+    }
+    async getList() {
+        return this.repo.find();
+    }
     async addPortfolio(name, description) {
         const portfolio = this.repo.create({ name, description });
         return this.repo.save(portfolio);
@@ -43,6 +53,13 @@ let PortfolioService = class PortfolioService {
             throw new common_1.NotFoundException('portfolio not found');
         }
         return this.repo.remove(portfolio);
+    }
+    async removePortfolios(idList) {
+        const portfolios = await this.repo.findByIds(idList);
+        if (!portfolios) {
+            throw new common_1.NotFoundException('portfolio remove not found');
+        }
+        return this.repo.remove(portfolios);
     }
 };
 PortfolioService = __decorate([

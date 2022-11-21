@@ -21,6 +21,12 @@ let SupplierService = class SupplierService {
     constructor(repo) {
         this.repo = repo;
     }
+    async getItem(id) {
+        return this.repo.findOne(id);
+    }
+    async getList() {
+        return this.repo.find();
+    }
     async addSupplier(name, description) {
         const supplier = this.repo.create({ name, description });
         return this.repo.save(supplier);
@@ -39,6 +45,13 @@ let SupplierService = class SupplierService {
             throw new common_1.NotFoundException('supplier not found');
         }
         return this.repo.remove(supplier);
+    }
+    async removeSuppliers(idList) {
+        const suppliers = await this.repo.findByIds(idList);
+        if (!suppliers) {
+            throw new common_1.NotFoundException('supplier remove not found');
+        }
+        return this.repo.remove(suppliers);
     }
 };
 SupplierService = __decorate([

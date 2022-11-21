@@ -44,7 +44,7 @@ __decorate([
     __metadata("design:type", String)
 ], Product.prototype, "post_service", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => supplier_entity_1.Supplier, (supplier) => supplier.products),
+    (0, typeorm_1.ManyToOne)(() => supplier_entity_1.Supplier, (supplier) => supplier.products, { onDelete: 'SET NULL' }),
     __metadata("design:type", supplier_entity_1.Supplier)
 ], Product.prototype, "supplier", void 0);
 __decorate([

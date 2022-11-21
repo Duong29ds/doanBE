@@ -7,6 +7,14 @@ import { Supplier } from './supplier.entity';
 export class SupplierService {
     constructor(@InjectRepository(Supplier) private repo: Repository<Supplier>) {}
 
+    async getItem(id: string){
+        return this.repo.findOne(id)
+    }
+
+    async getList(){
+        return this.repo.find()
+    }
+
     async addSupplier(name: string, description: string){
         const supplier = this.repo.create({ name, description });
         
@@ -28,5 +36,14 @@ export class SupplierService {
           throw new NotFoundException('supplier not found');
         }
         return this.repo.remove(supplier);
+    }
+
+
+    async removeSuppliers(idList:Array<number>){
+        const suppliers=await this.repo.findByIds(idList)
+        if (!suppliers) {
+            throw new NotFoundException('supplier remove not found');
+        }
+        return this.repo.remove(suppliers)
     }
 }

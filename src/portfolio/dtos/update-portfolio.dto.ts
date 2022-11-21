@@ -1,4 +1,5 @@
 import { IsString, IsOptional, IsArray } from 'class-validator';
+import { Product } from 'src/product/product.entity';
 
 export class UpdatePortfolioDto {
   @IsString()
@@ -12,4 +13,8 @@ export class UpdatePortfolioDto {
   @IsArray()
   @IsOptional()
   idListProduct: Array<number>
+
+  // @IsArray()
+  // @IsOptional()
+  // products: Array<Product>
 }

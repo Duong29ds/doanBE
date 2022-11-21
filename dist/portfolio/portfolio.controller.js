@@ -14,12 +14,19 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PortfolioController = void 0;
 const common_1 = require("@nestjs/common");
+const delete_supplier_dto_1 = require("../supplier/dtos/delete-supplier.dto");
 const create_portfolio_dto_1 = require("./dtos/create-portfolio.dto");
 const update_portfolio_dto_1 = require("./dtos/update-portfolio.dto");
 const portfolio_service_1 = require("./portfolio.service");
 let PortfolioController = class PortfolioController {
     constructor(portfolioService) {
         this.portfolioService = portfolioService;
+    }
+    async getPortfolio(id) {
+        return this.portfolioService.getItem(id);
+    }
+    async getPortfolios() {
+        return this.portfolioService.getList();
     }
     async createPortfolio(body) {
         return this.portfolioService.addPortfolio(body.name, body.description);
@@ -30,7 +37,23 @@ let PortfolioController = class PortfolioController {
     removePortfolio(id) {
         return this.portfolioService.removePortfolio(parseInt(id));
     }
+    removeSuppliers(body) {
+        return this.portfolioService.removePortfolios(body.idlist);
+    }
 };
+__decorate([
+    (0, common_1.Get)('/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], PortfolioController.prototype, "getPortfolio", null);
+__decorate([
+    (0, common_1.Get)(''),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], PortfolioController.prototype, "getPortfolios", null);
 __decorate([
     (0, common_1.Post)('/new'),
     __param(0, (0, common_1.Body)()),
@@ -53,6 +76,13 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], PortfolioController.prototype, "removePortfolio", null);
+__decorate([
+    (0, common_1.Delete)('/delete'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [delete_supplier_dto_1.DeleteListIdDto]),
+    __metadata("design:returntype", void 0)
+], PortfolioController.prototype, "removeSuppliers", null);
 PortfolioController = __decorate([
     (0, common_1.Controller)('portfolio'),
     __metadata("design:paramtypes", [portfolio_service_1.PortfolioService])

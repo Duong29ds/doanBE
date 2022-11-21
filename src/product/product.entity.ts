@@ -34,7 +34,7 @@ import {
     @Column()
     post_service: string;
 
-    @ManyToOne(() => Supplier, (supplier) => supplier.products)
+    @ManyToOne(() => Supplier, (supplier) => supplier.products,{onDelete:'SET NULL'})
     supplier: Supplier;
 
     @ManyToMany(() => Portfolio, (portfolio) => portfolio.products)
