@@ -1,9 +1,13 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { User } from 'src/users/user.entity';
 import * as bcrypt from 'bcrypt';
 import { UsersService } from 'src/users/users.service';
-import {randomBytes, scrypt as _scrypt } from 'crypto';
+import { randomBytes, scrypt as _scrypt } from 'crypto';
 import { promisify } from 'util';
 
 const scrypt = promisify(_scrypt);
@@ -45,7 +49,7 @@ export class AuthService {
     if (storedHash !== hash.toString('hex')) {
       throw new BadRequestException('bad password');
     }
-    
+
     return user;
   }
 

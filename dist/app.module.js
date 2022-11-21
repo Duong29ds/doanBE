@@ -28,6 +28,7 @@ const product_module_1 = require("./product/product.module");
 const product_entity_1 = require("./product/product.entity");
 const portfolio_module_1 = require("./portfolio/portfolio.module");
 const portfolio_entity_1 = require("./portfolio/portfolio.entity");
+const cloudinary_module_1 = require("./cloudinary/cloudinary.module");
 const cookieSession = require('cookie-session');
 let AppModule = class AppModule {
     constructor(configService) {
@@ -70,6 +71,7 @@ AppModule = __decorate([
             supplier_module_1.SupplierModule,
             product_module_1.ProductModule,
             portfolio_module_1.PortfolioModule,
+            cloudinary_module_1.CloudinaryModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [
