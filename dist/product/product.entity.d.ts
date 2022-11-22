@@ -1,4 +1,5 @@
 import { Cloudinary } from 'src/cloudinary/cloudinary.entity';
+import { ProductToOrder } from 'src/order/product_order.entity';
 import { Portfolio } from 'src/portfolio/portfolio.entity';
 import { Supplier } from 'src/supplier/supplier.entity';
 export declare class Product {
@@ -12,4 +13,5 @@ export declare class Product {
     supplier: Supplier;
     cloudinarys: Cloudinary[];
     portfolios: Portfolio[];
+    productToOrders: ProductToOrder[];
 }

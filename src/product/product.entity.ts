@@ -1,5 +1,6 @@
 import { Optional } from '@nestjs/common';
 import { Cloudinary } from 'src/cloudinary/cloudinary.entity';
+import { ProductToOrder } from 'src/order/product_order.entity';
 import { Portfolio } from 'src/portfolio/portfolio.entity';
 import { Supplier } from 'src/supplier/supplier.entity';
 import {
@@ -44,5 +45,8 @@ import {
     @ManyToMany(() => Portfolio, (portfolio) => portfolio.products)
     @JoinTable({name:'portfolio_product'})
     portfolios: Portfolio[]
+
+    @OneToMany(() => ProductToOrder, productToOrder => productToOrder.product)
+    public productToOrders!: ProductToOrder[];
 }
   

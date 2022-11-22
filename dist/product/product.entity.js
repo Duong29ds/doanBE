@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Product = void 0;
 const cloudinary_entity_1 = require("../cloudinary/cloudinary.entity");
+const product_order_entity_1 = require("../order/product_order.entity");
 const portfolio_entity_1 = require("../portfolio/portfolio.entity");
 const supplier_entity_1 = require("../supplier/supplier.entity");
 const typeorm_1 = require("typeorm");
@@ -57,6 +58,10 @@ __decorate([
     (0, typeorm_1.JoinTable)({ name: 'portfolio_product' }),
     __metadata("design:type", Array)
 ], Product.prototype, "portfolios", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => product_order_entity_1.ProductToOrder, productToOrder => productToOrder.product),
+    __metadata("design:type", Array)
+], Product.prototype, "productToOrders", void 0);
 Product = __decorate([
     (0, typeorm_1.Entity)()
 ], Product);

@@ -20,6 +20,7 @@ import { PortfolioModule } from './portfolio/portfolio.module';
 import { Portfolio } from './portfolio/portfolio.entity';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
 import { Cloudinary } from './cloudinary/cloudinary.entity';
+import { OrderModule } from './order/order.module';
 const cookieSession = require('cookie-session');
 
 @Module({
@@ -53,6 +54,7 @@ const cookieSession = require('cookie-session');
     ProductModule,
     PortfolioModule,
     CloudinaryModule,
+    OrderModule,
   ],
   controllers: [AppController],
   providers: [
