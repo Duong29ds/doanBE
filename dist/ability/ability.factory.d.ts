@@ -10,5 +10,5 @@ export declare enum Action {
 export declare type Subjects = InferSubjects<typeof User> | 'all';
 export declare type AppAbility = Ability<[Action, Subjects]>;
 export declare class AbilityFactory {
-    defineAbility(user: User): AppAbility;
+    defineAbility(user: User): void;
 }

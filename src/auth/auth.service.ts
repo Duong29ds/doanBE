@@ -9,6 +9,7 @@ import * as bcrypt from 'bcrypt';
 import { UsersService } from 'src/users/users.service';
 import { randomBytes, scrypt as _scrypt } from 'crypto';
 import { promisify } from 'util';
+import { CreateUserDto } from 'src/users/dtos/create-user.dto';
 
 const scrypt = promisify(_scrypt);
 
@@ -19,19 +20,21 @@ export class AuthService {
     private readonly usersService: UsersService,
   ) {}
 
-  async signup(email: string, password: string) {
-    const users = await this.usersService.find(email);
+  async signup(body:CreateUserDto) {
+    const users = await this.usersService.find(body.email);
     if (users.length) {
       throw new BadRequestException('email in use');
     }
     //Hash the users password
     const salt = randomBytes(8).toString('hex');
 
-    const hash = (await scrypt(password, salt, 32)) as Buffer;
+    const hash = (await scrypt(body.password, salt, 32)) as Buffer;
 
     const result = salt + '.' + hash.toString('hex');
 
-    const user = await this.usersService.create(email, result);
+    body.password=result;
+
+    const user = await this.usersService.create(body);
 
     return user;
   }

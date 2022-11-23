@@ -27,16 +27,16 @@ export class AbilityFactory {
       Ability as AbilityClass<AppAbility>,
     );
 
-    if (user.isAdmin) {
-      can(Action.Manage, 'all');
-      cannot(Action.Manage, User, { orgId: { $ne: user.orgId } });
-    } else {
-      can(Action.Read, User);
-      cannot(Action.Delete, User).because('you just can');
-    }
-    return build({
-      detectSubjectType: (item) =>
-        item.constructor as ExtractSubjectType<Subjects>,
-    });
+    // if (user.isAdmin) {
+    //   can(Action.Manage, 'all');
+    //   cannot(Action.Manage, User, { orgId: { $ne: user.orgId } });
+    // } else {
+    //   can(Action.Read, User);
+    //   cannot(Action.Delete, User).because('you just can');
+    // }
+    // return build({
+    //   detectSubjectType: (item) =>
+    //     item.constructor as ExtractSubjectType<Subjects>,
+    // });
   }
 }

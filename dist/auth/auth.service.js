@@ -45,15 +45,16 @@ let AuthService = class AuthService {
         this.jwtService = jwtService;
         this.usersService = usersService;
     }
-    async signup(email, password) {
-        const users = await this.usersService.find(email);
+    async signup(body) {
+        const users = await this.usersService.find(body.email);
         if (users.length) {
             throw new common_1.BadRequestException('email in use');
         }
         const salt = (0, crypto_1.randomBytes)(8).toString('hex');
-        const hash = (await scrypt(password, salt, 32));
+        const hash = (await scrypt(body.password, salt, 32));
         const result = salt + '.' + hash.toString('hex');
-        const user = await this.usersService.create(email, result);
+        body.password = result;
+        const user = await this.usersService.create(body);
         return user;
     }
     async signin(email, password) {

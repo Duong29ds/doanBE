@@ -26,7 +26,6 @@ let AbilitiesGuard = class AbilitiesGuard {
         const { user } = context.switchToHttp().getRequest();
         const ability = this.caslAbilityFactory.defineAbility(user);
         try {
-            rules.forEach((rule) => ability_1.ForbiddenError.from(ability).throwUnlessCan(rule.action, rule.subject));
             return true;
         }
         catch (error) {

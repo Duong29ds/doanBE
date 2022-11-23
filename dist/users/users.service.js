@@ -21,8 +21,8 @@ let UsersService = class UsersService {
     constructor(repo) {
         this.repo = repo;
     }
-    create(email, password) {
-        const user = this.repo.create({ email, password });
+    create(body) {
+        const user = this.repo.create(body);
         return this.repo.save(user);
     }
     async changePassword(id, password) {

@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
+const order_entity_1 = require("../order/order.entity");
 const typeorm_1 = require("typeorm");
 const report_entity_1 = require("../reports/report.entity");
 let User = class User {
@@ -30,19 +31,27 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
+], User.prototype, "name", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
 ], User.prototype, "email", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], User.prototype, "password", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ default: false }),
-    __metadata("design:type", Boolean)
-], User.prototype, "isAdmin", void 0);
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], User.prototype, "phone_number", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: true }),
-    __metadata("design:type", Number)
-], User.prototype, "orgId", void 0);
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], User.prototype, "address", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => order_entity_1.Order, (order) => order.user),
+    __metadata("design:type", Array)
+], User.prototype, "orders", void 0);
 __decorate([
     (0, typeorm_1.OneToMany)(() => report_entity_1.Report, (report) => report.user),
     __metadata("design:type", Array)

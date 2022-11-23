@@ -27,8 +27,6 @@ let AuthService = class AuthService {
         const salt = (0, crypto_1.randomBytes)(8).toString('hex');
         const hash = (await scrypt(password, salt, 32));
         const result = salt + '.' + hash.toString('hex');
-        const user = await this.usersService.create(email, password);
-        return user;
     }
     async signin(email, password) {
         const [user] = await this.usersService.find(email);

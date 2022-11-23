@@ -51,13 +51,14 @@ const bcrypt = __importStar(require("bcrypt"));
 const abilities_decorator_1 = require("../ability/abilities.decorator");
 const ability_factory_1 = require("../ability/ability.factory");
 const ability_guard_1 = require("../ability/ability.guard");
+const signin_user_dto_1 = require("./dtos/signin-user-dto");
 let UsersController = class UsersController {
     constructor(usersService, authService) {
         this.usersService = usersService;
         this.authService = authService;
     }
     async createUser(body) {
-        const user = await this.authService.signup(body.email, body.password);
+        const user = await this.authService.signup(body);
         console.log(user);
         return user;
     }
@@ -126,7 +127,7 @@ __decorate([
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Session)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_user_dto_1.CreateUserDto, Object]),
+    __metadata("design:paramtypes", [signin_user_dto_1.SignInUserDto, Object]),
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "signin", null);
 __decorate([

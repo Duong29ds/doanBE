@@ -1,3 +1,4 @@
+import { Order } from 'src/order/order.entity';
 import {
   AfterInsert,
   AfterRemove,
@@ -13,6 +14,9 @@ import { Report } from '../reports/report.entity';
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
+  
+  @Column()
+  name: string;
 
   @Column()
   email: string;
@@ -20,11 +24,14 @@ export class User {
   @Column()
   password: string;
 
-  @Column({ default: false })
-  isAdmin: boolean;
+  @Column()
+  phone_number: string;
 
-  @Column({ nullable: true })
-  orgId: number;
+  @Column()
+  address: string;
+
+  @OneToMany(() => Order, (order) => order.user)
+  orders: Order[];
 
   @OneToMany(() => Report, (report) => report.user)
   reports: Report[];

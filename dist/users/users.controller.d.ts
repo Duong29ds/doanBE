@@ -4,19 +4,22 @@ import { UsersService } from './users.service';
 import { AuthService } from '../auth/auth.service';
 import { User } from './user.entity';
 import { ChangePasswordDto } from './dtos/change-password.dto';
+import { SignInUserDto } from './dtos/signin-user-dto';
 export declare class UsersController {
     private usersService;
     private authService;
     constructor(usersService: UsersService, authService: AuthService);
     createUser(body: CreateUserDto): Promise<User>;
     changePassword(user: User, body: ChangePasswordDto): Promise<void>;
-    signin(body: CreateUserDto, session: any): Promise<{
+    signin(body: SignInUserDto, session: any): Promise<{
         token: string;
         id: number;
+        name: string;
         email: string;
         password: string;
-        isAdmin: boolean;
-        orgId: number;
+        phone_number: string;
+        address: string;
+        orders: import("../order/order.entity").Order[];
         reports: import("../reports/report.entity").Report[];
     }>;
     signOut(session: any): void;

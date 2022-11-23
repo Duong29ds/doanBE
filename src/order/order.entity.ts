@@ -1,8 +1,10 @@
+import { User } from 'src/users/user.entity';
 import {
     Entity,
     Column,
     PrimaryGeneratedColumn,
     OneToMany,
+    ManyToOne,
   } from 'typeorm';
 import { ProductToOrder } from './product_order.entity';
   
@@ -28,5 +30,8 @@ import { ProductToOrder } from './product_order.entity';
 
     @OneToMany(() => ProductToOrder, productToOrder => productToOrder.order)
     public productToOrders!: ProductToOrder[];
+
+    @ManyToOne(() => User, (user) => user.orders)
+    user: User;
 }
   

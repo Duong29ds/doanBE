@@ -27,6 +27,7 @@ import * as bcrypt from 'bcrypt';
 import { CheckAbilities } from 'src/ability/abilities.decorator';
 import { Action } from 'src/ability/ability.factory';
 import { AbilitiesGuard } from 'src/ability/ability.guard';
+import { SignInUserDto } from './dtos/signin-user-dto';
 // import { AuthGuard } from '../guards/auth.guard';
 
 @Controller('user')
@@ -40,7 +41,7 @@ export class UsersController {
   @Post('/signup')
   async createUser(@Body() body: CreateUserDto) {
     // async createUser(@Body() file: any) {
-    const user = await this.authService.signup(body.email, body.password);
+    const user = await this.authService.signup(body);
     // const user = await this.authService.signup(file);
 
     console.log(user);
@@ -69,7 +70,7 @@ export class UsersController {
   }
 
   @Post('/signin')
-  async signin(@Body() body: CreateUserDto, @Session() session: any) {
+  async signin(@Body() body: SignInUserDto, @Session() session: any) {
     const user = await this.authService.signin(body.email, body.password);
     // session.userId = user.id;
     const token = this.authService.getTokenForUser(user);
