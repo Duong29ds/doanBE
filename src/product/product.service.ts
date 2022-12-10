@@ -4,6 +4,7 @@ import { Portfolio } from 'src/portfolio/portfolio.entity';
 import { Supplier } from 'src/supplier/supplier.entity';
 import { Repository } from 'typeorm';
 import { CreateProductDto } from './dtos/create-product.dto';
+import { UpdateProductDto } from './dtos/update-product.dto';
 import { Product } from './product.entity';
 
 @Injectable()
@@ -18,7 +19,9 @@ export class ProductService {
     }
 
     async getItem(id:string){
-        return this.repo.findOne(id)
+        return this.repo.findOne(id,{
+            relations: ["supplier"]
+        });
     }
 
     async createProduct(productnew: CreateProductDto, idSup: number, idListPortfolio:Array<number>){
@@ -29,6 +32,22 @@ export class ProductService {
 
         product.supplier=supplier;
         product.portfolios=portfolios;
+
+        return this.repo.save(product);
+    }
+
+    async updateProduct(productnew: UpdateProductDto, idSup: number){
+        const product =await this.repo.findOne(productnew.id);
+        if (!product) {
+            throw new NotFoundException('product not found');
+        }
+        const supplier=await this.repoSup.findOne(idSup);
+
+        product.supplier=supplier;
+        Object.assign(product, productnew);
+
+        console.log(product,'product updated');
+        console.log(idSup,'idSup updated');
 
         return this.repo.save(product);
     }

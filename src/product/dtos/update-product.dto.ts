@@ -6,7 +6,10 @@ import {
     IsArray,
     IsOptional,
   } from 'class-validator';
-  export class CreateProductDto {  
+  export class UpdateProductDto {  
+    @IsNumber()
+    id:number;
+
     @IsString()
     name: string;  
     
@@ -32,9 +35,5 @@ import {
     @IsOptional()
     @IsNumber()
     idSup: number;  
-
-    @IsOptional()
-    @IsArray()
-    idListPortfolio:Array<number>;
   }
   

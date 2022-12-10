@@ -5,12 +5,7 @@ import { PortfolioService } from './portfolio.service';
 export declare class PortfolioController {
     private portfolioService;
     constructor(portfolioService: PortfolioService);
-    getPortfolio(id: string): Promise<{
-        products: import("../product/product.entity").Product[];
-        id: number;
-        name: string;
-        description: string;
-    }>;
+    getPortfolio(id: string): Promise<import("./portfolio.entity").Portfolio>;
     getPortfolios(): Promise<import("./portfolio.entity").Portfolio[]>;
     createPortfolio(body: CreatePortfolioDto): Promise<import("./portfolio.entity").Portfolio>;
     updatePortfolio(id: string, body: UpdatePortfolioDto): Promise<import("./portfolio.entity").Portfolio>;

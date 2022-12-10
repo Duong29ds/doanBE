@@ -11,11 +11,13 @@ export class PortfolioService {
     @InjectRepository(Product) private repoProd: Repository<Product>) {}
 
     async getItem(id: string){
-        const products =await this.repoProd
-        .createQueryBuilder('product')
-        .innerJoin('product.portfolios', 'portfolio_product').getMany();
-        const portfolioTemp=await this.repo.findOne(id)
-        return {...portfolioTemp, products}
+        // const products =await this.repoProd
+        // .createQueryBuilder('product')
+        // .innerJoin('product.portfolios', 'portfolio_product').getMany();
+        const portfolioTemp=await this.repo.findOne(id,{
+            relations:['products']
+        })
+        return portfolioTemp
     }
 
     async getList(){

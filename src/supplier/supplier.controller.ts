@@ -23,6 +23,7 @@ export class SupplierController {
 
     @Post('/new')
     async createSupplier(@Body() body: CreateSupplierDto) {
+      console.log(body,'body');
       return this.supplierService.addSupplier(body.name, body.description);
     }
 
