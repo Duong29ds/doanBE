@@ -29,7 +29,6 @@ let SupplierController = class SupplierController {
         return this.supplierService.getItem(id);
     }
     async createSupplier(body) {
-        console.log(body, 'body');
         return this.supplierService.addSupplier(body.name, body.description);
     }
     async updateSupplier(id, body) {

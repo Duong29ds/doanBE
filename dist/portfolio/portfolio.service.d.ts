@@ -5,7 +5,12 @@ export declare class PortfolioService {
     private repo;
     private repoProd;
     constructor(repo: Repository<Portfolio>, repoProd: Repository<Product>);
-    getItem(id: string): Promise<Portfolio>;
+    getItem(id: string): Promise<{
+        products: Product[];
+        id: number;
+        name: string;
+        description: string;
+    }>;
     getList(): Promise<Portfolio[]>;
     addPortfolio(name: string, description: string): Promise<Portfolio>;
     updatePortfolio(id: number, attrs: Partial<Portfolio>, idListProduct: Array<number>): Promise<Portfolio>;

@@ -32,7 +32,7 @@ __decorate([
 ], CreateProductDto.prototype, "price", void 0);
 __decorate([
     (0, class_validator_1.IsArray)(),
-    __metadata("design:type", Object)
+    __metadata("design:type", Array)
 ], CreateProductDto.prototype, "images", void 0);
 __decorate([
     (0, class_transformer_1.Type)(() => Date),
@@ -44,12 +44,10 @@ __decorate([
     __metadata("design:type", String)
 ], CreateProductDto.prototype, "post_service", void 0);
 __decorate([
-    (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsNumber)(),
     __metadata("design:type", Number)
 ], CreateProductDto.prototype, "idSup", void 0);
 __decorate([
-    (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsArray)(),
     __metadata("design:type", Array)
 ], CreateProductDto.prototype, "idListPortfolio", void 0);
