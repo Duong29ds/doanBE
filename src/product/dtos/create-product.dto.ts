@@ -1,37 +1,31 @@
 import { Type } from 'class-transformer';
-import {
-    IsString,
-    IsNumber,
-    IsDate,
-    IsArray,
-  } from 'class-validator';
-  export class CreateProductDto {  
-    @IsString()
-    name: string;  
-    
-    @IsString()
-    description: string;
-  
-    @IsNumber()
-    total: number;
+import { IsString, IsNumber, IsDate, IsArray } from 'class-validator';
+export class CreateProductDto {
+  @IsString()
+  name: string;
 
-    @IsNumber()
-    price: number;
+  @IsString()
+  description: string;
 
-    @IsArray()
-    images: Express.Multer.File
+  @IsNumber()
+  total: number;
 
-    @Type(() => Date)
-    @IsDate()
-    import_date: Date;
+  @IsNumber()
+  price: number;
 
-    @IsString()
-    post_service: string;
+  @IsArray()
+  images: number[];
 
-    @IsNumber()
-    idSup: number;  
+  @Type(() => Date)
+  @IsDate()
+  import_date: Date;
 
-    @IsArray()
-    idListPortfolio:Array<number>;
-  }
-  
+  @IsString()
+  post_service: string;
+
+  @IsNumber()
+  idSup: number;
+
+  @IsArray()
+  idListPortfolio: Array<number>;
+}
