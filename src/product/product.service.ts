@@ -23,10 +23,10 @@ export class ProductService {
       relations: ['supplier'],
     });
   }
-
-  async getItem(id: string) {
-    return this.repo.findOne(id);
-  }
+    
+  async getList(){
+    return this.repo.find();
+}
 
   async createProduct(
     productnew: CreateProductDto,

@@ -38,11 +38,13 @@ let ProductService = class ProductService {
         this.repoSup = repoSup;
         this.repoPortf = repoPortf;
     }
+    async getItem(id) {
+        return this.repo.findOne(id, {
+            relations: ['supplier'],
+        });
+    }
     async getList() {
         return this.repo.find();
-    }
-    async getItem(id) {
-        return this.repo.findOne(id);
     }
     async createProduct(productnew, idSup, idListPortfolio) {
         const { images } = productnew, rest = __rest(productnew, ["images"]);
@@ -55,6 +57,18 @@ let ProductService = class ProductService {
         const portfolios = await this.repoPortf.findByIds(idListPortfolio);
         product.supplier = supplier;
         product.portfolios = portfolios;
+        return this.repo.save(product);
+    }
+    async updateProduct(productnew, idSup) {
+        const product = await this.repo.findOne(productnew.id);
+        if (!product) {
+            throw new common_1.NotFoundException('product not found');
+        }
+        const supplier = await this.repoSup.findOne(idSup);
+        product.supplier = supplier;
+        Object.assign(product, productnew);
+        console.log(product, 'product updated');
+        console.log(idSup, 'idSup updated');
         return this.repo.save(product);
     }
     async removeProduct(id) {

@@ -24,11 +24,10 @@ let PortfolioService = class PortfolioService {
         this.repoProd = repoProd;
     }
     async getItem(id) {
-        const products = await this.repoProd
-            .createQueryBuilder('product')
-            .innerJoin('product.portfolios', 'portfolio_product').getMany();
-        const portfolioTemp = await this.repo.findOne(id);
-        return Object.assign(Object.assign({}, portfolioTemp), { products });
+        const portfolioTemp = await this.repo.findOne(id, {
+            relations: ['products']
+        });
+        return portfolioTemp;
     }
     async getList() {
         return this.repo.find();
